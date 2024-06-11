@@ -7,16 +7,11 @@
   /* border: 1px solid; */
 }
 
-body {
-  background: rgb(71, 214, 14);
-}
-
 .main-container {
-  margin: 0 auto;
-  margin-top: 5%;
-  width: 95%;
-  height: 95vh;
-  background: #fff;
+  background: url("assets/bg-cg2.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
 
   display: flex;
   justify-content: center;
@@ -25,23 +20,8 @@ body {
   flex-direction: column;
 }
 
-.credit-container {
-  width: 90%;
-  display: flex;
-  justify-content: start;
-  margin: -5rem 0 3rem 0;
-}
-
-.credit-container p {
-  font-weight: bold;
-  font-size: 1.5rem;
-}
-
-.credit-container p span {
-  color: red;
-}
-
 .title {
+  margin-top: -4rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -63,13 +43,16 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 .color-result-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  justify-content: center;
   align-items: center;
-  margin: 1rem 0 1.2rem 4rem;
+  text-align: center;
+  position: relative;
+  margin-top: 1rem;
 }
 .result {
   width: 80px;
@@ -96,12 +79,12 @@ body {
 }
 
 .rope {
-  width: 50px;
-  height: 90px;
-  border: none;
+  position: absolute;
+  right: -3.7rem;
+  top: 0;
 }
 .rope img {
-  width: 50px;
+  width: 70px;
   height: 90px;
   border: none;
   transition: 0.2s;
@@ -112,14 +95,10 @@ body {
   transform: translateY(50px);
 }
 
-.rope img.disabled {
-  opacity: 0.5;
-  pointer-events: none;
-}
-
 .board-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
   align-items: center;
   border: 3px solid #000;
   border-radius: 5px;
@@ -130,6 +109,10 @@ body {
   width: 100px;
   height: 100px;
   border: 1px solid #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
 }
 
 .color-yellow {
@@ -149,6 +132,21 @@ body {
 }
 .color-green {
   background: green;
+}
+
+.credit-container {
+  display: flex;
+  justify-content: start;
+  margin: 2rem;
+}
+
+.credit-container p {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.credit-container p span {
+  color: red;
 }
 
 /* for random color animations */

@@ -53,3 +53,69 @@ const appendRandomColor = () => {
     val3.style.backgroundColor = colors[random3];
   }, 2200);
 };
+
+// Function for handling bets and updating credits
+const creditComputation = () => {
+  const credit = document.querySelector("#credit");
+  const boards = document.querySelectorAll(".color-board");
+  let creditAmount = 100;
+
+  // auidios
+  const soundY = document.querySelector("#sound-yellow");
+  const soundW = document.querySelector("#sound-white");
+  const soundP = document.querySelector("#sound-pink");
+  const soundB = document.querySelector("#sound-blue");
+  const soundR = document.querySelector("#sound-red");
+  const soundG = document.querySelector("#sound-green");
+
+  let bets = { y: 0, w: 0, p: 0, b: 0, r: 0, g: 0 }; // Object to track bets on each board
+
+  boards.forEach((board) => {
+    board.addEventListener("click", () => {
+      if (board.id == "yellow") {
+        soundY.currentTime = 0; // Rewind to start
+        soundY.play();
+      } else if (board.id == "white") {
+        soundW.currentTime = 0; // Rewind to start
+        soundW.play();
+      } else if (board.id == "pink") {
+        soundP.currentTime = 0; // Rewind to start
+        soundP.play();
+      } else if (board.id == "blue") {
+        soundB.currentTime = 0; // Rewind to start
+        soundB.play();
+      } else if (board.id == "red") {
+        soundR.currentTime = 0; // Rewind to start
+        soundR.play();
+      } else {
+        soundG.currentTime = 0; // Rewind to start
+        soundG.play();
+      }
+    });
+  });
+  credit.textContent = creditAmount;
+};
+creditComputation();
+
+// boards.forEach((board) => {
+//   board.addEventListener("click", () => {
+//     const color = board.style.backgroundColor;
+//     if (creditAmount > 0) {
+//       bets[color] = (bets[color] || 0) + 5;
+
+//       let betDisplay = board.querySelector(".bet-display");
+//       if (!betDisplay) {
+//         betDisplay = document.createElement("span");
+//         betDisplay.classList.add("bet-display");
+//         board.appendChild(betDisplay);
+//       }
+//       betDisplay.textContent = bets[color];
+
+//       creditAmount -= 5;
+//       credit.textContent = creditAmount;
+//     } else {
+//       alert("ZERO CREDIT");
+//     }
+//   });
+// });
+// console.log(bets);
