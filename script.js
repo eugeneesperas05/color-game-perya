@@ -30,12 +30,26 @@ const appendRandomColor = () => {
     box1.classList.add(`color-${colors[random1]}`);
     box2.classList.add(`color-${colors[random2]}`);
     box3.classList.add(`color-${colors[random3]}`);
-  }, 3000);
+  }, 2000);
 
   setTimeout(() => {
     box1.classList.remove(`color-${colors[random1]}`);
     box2.classList.remove(`color-${colors[random2]}`);
     box3.classList.remove(`color-${colors[random3]}`);
-  }, 5000);
+  }, 4500);
   // console.log(colors[random1], colors[random2], colors[random3]);
+
+  // appending the text value for text-result container h2
+  setTimeout(() => {
+    const val1 = document.querySelector("#val1");
+    const val2 = document.querySelector("#val2");
+    const val3 = document.querySelector("#val3");
+
+    val1.textContent = colors[random1];
+    val2.textContent = colors[random2];
+    val3.textContent = colors[random3];
+    val1.style.backgroundColor = colors[random1];
+    val2.style.backgroundColor = colors[random2];
+    val3.style.backgroundColor = colors[random3];
+  }, 2200);
 };
