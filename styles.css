@@ -1,0 +1,238 @@
+/* perya color game */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: wheat;
+}
+
+.main-container {
+  margin: 0 auto;
+  margin-top: 5%;
+  width: 95%;
+  height: 95vh;
+  background: #fff;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5rem;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.color-result-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+}
+.result {
+  width: 80px;
+  height: 80px;
+  border: 1px solid #000;
+}
+.result.color-yellow {
+  background: yellow;
+}
+.result.color-white {
+  background: white;
+}
+.result.color-pink {
+  background: pink;
+}
+.result.color-blue {
+  background: blue;
+}
+.result.color-red {
+  background: red;
+}
+.result.color-green {
+  background: green;
+}
+
+.rope {
+  width: 50px;
+  height: 90px;
+  border: none;
+}
+.rope img {
+  width: 50px;
+  height: 90px;
+  border: none;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.rope img:hover {
+  transform: translateY(50px);
+}
+
+.rope img.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.board-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  border: 3px solid #000;
+  border-radius: 5px;
+}
+
+.color-board {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #000;
+}
+
+.color-yellow {
+  background: yellow;
+}
+.color-white {
+  background: white;
+}
+.color-pink {
+  background: pink;
+}
+.color-blue {
+  background: blue;
+}
+.color-red {
+  background: red;
+}
+.color-green {
+  background: green;
+}
+
+/* for random color animations */
+
+@keyframes color-shuffling1 {
+  0% {
+    background: yellow;
+  }
+  10% {
+    background: white;
+  }
+  20% {
+    background: pink;
+  }
+  30% {
+    background: blue;
+  }
+  40% {
+    background: red;
+  }
+  50% {
+    background: green;
+  }
+  60% {
+    background: yellow;
+  }
+  70% {
+    background: white;
+  }
+  80% {
+    background: pink;
+  }
+  90% {
+    background: blue;
+  }
+  100% {
+    background: red;
+  }
+}
+
+@keyframes color-shuffling2 {
+  0% {
+    background: white;
+  }
+  10% {
+    background: pink;
+  }
+  20% {
+    background: red;
+  }
+  30% {
+    background: blue;
+  }
+  40% {
+    background: green;
+  }
+  50% {
+    background: yellow;
+  }
+  60% {
+    background: white;
+  }
+  70% {
+    background: pink;
+  }
+  80% {
+    background: red;
+  }
+  90% {
+    background: blue;
+  }
+  100% {
+    background: green;
+  }
+}
+
+@keyframes color-shuffling3 {
+  0% {
+    background: blue;
+  }
+  10% {
+    background: green;
+  }
+  20% {
+    background: yellow;
+  }
+  30% {
+    background: white;
+  }
+  40% {
+    background: red;
+  }
+  50% {
+    background: pink;
+  }
+  60% {
+    background: blue;
+  }
+  70% {
+    background: green;
+  }
+  80% {
+    background: yellow;
+  }
+  90% {
+    background: white;
+  }
+  100% {
+    background: red;
+  }
+}
+
+.shuffle1 {
+  animation: color-shuffling1 1s infinite;
+}
+.shuffle2 {
+  animation: color-shuffling2 1s infinite;
+}
+.shuffle3 {
+  animation: color-shuffling3 1s infinite;
+}
