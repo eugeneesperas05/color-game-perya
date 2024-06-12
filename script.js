@@ -58,7 +58,6 @@ const appendRandomColor = () => {
 const creditComputation = () => {
   const credit = document.querySelector("#credit");
   const boards = document.querySelectorAll(".color-board");
-  let creditAmount = 100;
 
   // auidios
   const soundY = document.querySelector("#sound-yellow");
@@ -68,33 +67,63 @@ const creditComputation = () => {
   const soundR = document.querySelector("#sound-red");
   const soundG = document.querySelector("#sound-green");
 
-  let bets = { y: 0, w: 0, p: 0, b: 0, r: 0, g: 0 }; // Object to track bets on each board
+  let onBet = 0;
 
   boards.forEach((board) => {
+    let creditAmount = 100;
+    let betCounter = 0;
     board.addEventListener("click", () => {
+      let bets = { y: 0, w: 0, p: 0, b: 0, r: 0, g: 0 }; // Object to track bets on each board
       if (board.id == "yellow") {
         soundY.currentTime = 0; // Rewind to start
         soundY.play();
+        bets.y += 5;
+        betCounter += 5;
+        onBet += 5;
+        board.textContent = betCounter;
       } else if (board.id == "white") {
         soundW.currentTime = 0; // Rewind to start
         soundW.play();
+        bets.w += 5;
+        betCounter += 5;
+        onBet += 5;
+        board.textContent = betCounter;
       } else if (board.id == "pink") {
         soundP.currentTime = 0; // Rewind to start
         soundP.play();
+        bets.p += 5;
+        betCounter += 5;
+        onBet += 5;
+        board.textContent = betCounter;
       } else if (board.id == "blue") {
-        soundB.currentTime = 0; // Rewind to start
+        soundB.currentTime = 0;
         soundB.play();
+        bets.b += 5;
+        betCounter += 5;
+        onBet += 5;
+        board.textContent = betCounter;
       } else if (board.id == "red") {
-        soundR.currentTime = 0; // Rewind to start
+        soundR.currentTime = 0;
         soundR.play();
+        bets.r += 5;
+        betCounter += 5;
+        onBet += 5;
+        board.textContent = betCounter;
       } else {
-        soundG.currentTime = 0; // Rewind to start
+        soundG.currentTime = 0;
         soundG.play();
+        bets.g += 5;
+        betCounter += 5;
+        onBet += 5;
+        board.textContent = betCounter;
       }
+      console.log(betCounter);
+      console.log(onBet);
+      credit.textContent = creditAmount - onBet;
     });
   });
-  credit.textContent = creditAmount;
 };
+
 creditComputation();
 
 // for my sound button
@@ -105,6 +134,7 @@ onSoundBtn.addEventListener("click", () => {
   let bgAudio = document.querySelector("#bg-audio");
   if (counterSound % 2 == 0) {
     onSoundBtn.style.backgroundColor = "#4fec4f";
+    bgAudio.currentTime = 0; // Rewind to start
     bgAudio.play();
     counterSound++;
   } else {
