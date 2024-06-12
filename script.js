@@ -97,6 +97,23 @@ const creditComputation = () => {
 };
 creditComputation();
 
+// for my sound button
+const onSoundBtn = document.querySelector(".vol");
+let counterSound = 0;
+
+onSoundBtn.addEventListener("click", () => {
+  let bgAudio = document.querySelector("#bg-audio");
+  if (counterSound % 2 == 0) {
+    onSoundBtn.style.backgroundColor = "#4fec4f";
+    bgAudio.play();
+    counterSound++;
+  } else {
+    onSoundBtn.style.backgroundColor = "#d5dad5";
+    bgAudio.pause();
+    counterSound++;
+  }
+});
+
 // boards.forEach((board) => {
 //   board.addEventListener("click", () => {
 //     const color = board.style.backgroundColor;
