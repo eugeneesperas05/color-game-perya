@@ -58,68 +58,59 @@ const appendRandomColor = () => {
 const creditComputation = () => {
   const credit = document.querySelector("#credit");
   const boards = document.querySelectorAll(".color-board");
+  const boardUnclick = document.querySelector(".div-unclick");
 
-  // auidios
-  const soundY = document.querySelector("#sound-yellow");
-  const soundW = document.querySelector("#sound-white");
-  const soundP = document.querySelector("#sound-pink");
-  const soundB = document.querySelector("#sound-blue");
-  const soundR = document.querySelector("#sound-red");
-  const soundG = document.querySelector("#sound-green");
-
-  let onBet = 0;
+  // let onBet = 0;
+  let bets = { y: 0, w: 0, p: 0, b: 0, r: 0, g: 0 };
+  let by = 0;
+  let bw = 0;
+  let bp = 0;
+  let bb = 0;
+  let br = 0;
+  let bg = 0;
 
   boards.forEach((board) => {
     let creditAmount = 100;
-    let betCounter = 0;
+
     board.addEventListener("click", () => {
-      let bets = { y: 0, w: 0, p: 0, b: 0, r: 0, g: 0 }; // Object to track bets on each board
       if (board.id == "yellow") {
-        soundY.currentTime = 0; // Rewind to start
-        soundY.play();
-        bets.y += 5;
-        betCounter += 5;
-        onBet += 5;
-        board.textContent = betCounter;
+        by = bets.y += 5;
+        board.textContent = bets.y;
+        by += bets.y + 5;
       } else if (board.id == "white") {
-        soundW.currentTime = 0; // Rewind to start
-        soundW.play();
-        bets.w += 5;
-        betCounter += 5;
-        onBet += 5;
-        board.textContent = betCounter;
+        bw = bets.w += 5;
+        board.textContent = bets.w;
+        bw += bets.w + 5;
       } else if (board.id == "pink") {
-        soundP.currentTime = 0; // Rewind to start
-        soundP.play();
-        bets.p += 5;
-        betCounter += 5;
-        onBet += 5;
-        board.textContent = betCounter;
+        bp = bets.p += 5;
+        board.textContent = bets.p;
+        bp += bets.p + 5;
       } else if (board.id == "blue") {
-        soundB.currentTime = 0;
-        soundB.play();
-        bets.b += 5;
-        betCounter += 5;
-        onBet += 5;
-        board.textContent = betCounter;
+        bb = bets.b += 5;
+        board.textContent = bets.b;
+        bb += bets.b + 5;
       } else if (board.id == "red") {
-        soundR.currentTime = 0;
-        soundR.play();
-        bets.r += 5;
-        betCounter += 5;
-        onBet += 5;
-        board.textContent = betCounter;
+        br = bets.r += 5;
+        board.textContent = bets.r;
+        br += bets.r + 5;
       } else {
-        soundG.currentTime = 0;
-        soundG.play();
-        bets.g += 5;
-        betCounter += 5;
-        onBet += 5;
-        board.textContent = betCounter;
+        bg = bets.g += 5;
+        board.textContent = bets.g;
+        bg += bets.g + 5;
       }
-      console.log(betCounter);
-      console.log(onBet);
-      credit.textContent = creditAmount - onBet;
+
+      const sum = Object.values(bets).reduce(
+        (total, value) => total + value,
+        0
+      );
+
+      credit.textContent = creditAmount - sum;
+      if (credit.textContent == 0) {
+        alert("paload ka muna!");
+        boardUnclick.style.display = "flex";
+      } else {
+        boardUnclick.style.display = "none";
+      }
     });
   });
 };
