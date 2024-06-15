@@ -13,7 +13,7 @@ const peryaGame = () => {
 
     // Array to store the winning colors
     let winningColors = [];
-    let totalWin = [];
+    let totalWin = 0;
     const plussWinnings = document.querySelector(".pluss-winning");
 
     // Collect the winning colors
@@ -35,23 +35,26 @@ const peryaGame = () => {
         const boardColor = board.id;
         if (colorCounts[boardColor]) {
           const betValue = parseInt(board.textContent) || 0;
-          const winAmount = betValue * colorCounts[boardColor];
-          totalWin.push(winAmount);
+          let multiplier = 0; // Default multiplier
+
+          // Set multiplier based on occurrences
+          if (colorCounts[boardColor] === 3) {
+            multiplier = 4;
+          } else if (colorCounts[boardColor] === 2) {
+            multiplier = 3;
+          } else if (colorCounts[boardColor] === 1) {
+            multiplier = 2;
+          }
+
+          const winAmount = betValue * multiplier;
+          totalWin += winAmount;
         }
       });
 
-      // Resetting the board
-      setTimeout(() => {
-        boards.forEach((board) => {
-          board.textContent = "";
-        });
-      }, 2500);
-
-      // Sum up the total winnings
-      let totalSum = totalWin.reduce((a, b) => a + b, 0);
-      if (totalSum > 0) {
+      // Display winnings
+      if (totalWin > 0) {
         plussWinnings.style.display = "flex";
-        plussWinnings.textContent = `+ ${totalSum}`;
+        plussWinnings.textContent = `+ ${totalWin}`;
       } else {
         plussWinnings.style.display = "none";
       }
@@ -61,14 +64,16 @@ const peryaGame = () => {
       }, 2400);
 
       // Update the credit points
-      creditAmount += totalSum;
+      creditAmount += totalWin;
       credit.textContent = creditAmount;
-      totalWin = []; // Reset totalWin for next round
+
+      // Reset bet amounts
+      resetBets(); // Call resetBets after processing the results
     }, 2400);
   };
 
   setTimeout(() => {
-    if (credit.textContent > 0) {
+    if (creditAmount > 0) {
       boardUnclick.style.display = "none";
     }
   }, 2500);
@@ -88,7 +93,8 @@ const appendRandomColor = () => {
   const box1 = document.querySelector("#box-one");
   const box2 = document.querySelector("#box-two");
   const box3 = document.querySelector("#box-three");
-  // adding the color-shuffling animation to the three box
+
+  // Adding the color-shuffling animation to the three boxes
   box1.classList.add(`shuffle1`);
   box2.classList.add(`shuffle2`);
   box3.classList.add(`shuffle3`);
@@ -108,7 +114,7 @@ const appendRandomColor = () => {
     box3.classList.remove(`color-${colors[random3]}`);
   }, 4500);
 
-  // appending the text value for text-result container h2
+  // Appending the text value for text-result container h2
   setTimeout(() => {
     const val1 = document.querySelector("#val1");
     const val2 = document.querySelector("#val2");
@@ -138,11 +144,6 @@ const creditComputation = () => {
         bets[boardId[0]] += 5; // Add 5 to the respective color bet
         board.textContent = bets[boardId[0]];
 
-        const sum = Object.values(bets).reduce(
-          (total, value) => total + value,
-          0
-        );
-
         creditAmount -= 5; // Deduct 5 from credit for each click
         credit.textContent = creditAmount;
 
@@ -157,6 +158,18 @@ const creditComputation = () => {
       }
     });
   });
+
+  // Reset bets after each game
+  const resetBets = () => {
+    boards.forEach((board) => {
+      let boardId = board.id;
+      bets[boardId[0]] = 0; // Reset bet amount
+      board.textContent = "";
+    });
+  };
+
+  // Make resetBets function accessible to peryaGame
+  window.resetBets = resetBets;
 };
 
 creditComputation();
