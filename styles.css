@@ -117,8 +117,9 @@
   cursor: pointer;
 }
 
+/* popups when your credit is zero */
 .div-unclick {
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -127,8 +128,23 @@
   position: absolute;
   top: 0;
   left: 0;
-  display: none;
   color: #fff;
+  font-size: 2rem;
+}
+
+/* popups when your winning bet */
+.pluss-winning {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  color: #fff;
+  background: #23750e;
+  position: absolute;
+  margin: 0 auto;
+  display: none;
   font-size: 2rem;
 }
 
